@@ -1,5 +1,7 @@
 package Logic;
 
+import Logic.Enums.LYOKOCLASS;
+
 /**
  * Created by jack on 8/3/18.
  */
@@ -8,15 +10,18 @@ public class Lyokowarrior {
     private int health;
     private static int MAXHEALTH = 100;
     private int level;
+    private LYOKOCLASS lyokoclass;
+    private static int LEVELXP = 1000;
+    private int xp;
 
-
-    public Lyokowarrior(String username){
+    public Lyokowarrior(String username,LYOKOCLASS lyokoclass){
         this.username = username;
         this.health = MAXHEALTH;
         this.level = 1;
+        this.lyokoclass = lyokoclass;
     }
 
-    public Lyokowarrior(String username,int level, int health){
+    public Lyokowarrior(String username,LYOKOCLASS lyokoclass,int level, int health){
         this.username = username;
         this.level = level;
         if (health > MAXHEALTH){
@@ -25,6 +30,7 @@ public class Lyokowarrior {
         }else {
             this.health = health;
         }
+        this.lyokoclass = lyokoclass;
     }
 
     public int getHealth() {
@@ -74,4 +80,19 @@ public class Lyokowarrior {
         heal(MAXHEALTH);
     }
 
+
+    public void addXP(int ammount){
+        if ((xp + ammount) >= LEVELXP){
+            int remainder = (xp + ammount) - LEVELXP;
+            addXP(remainder);
+        }else {
+            xp+=ammount;
+        }
+    }
+
+    public void levelUp(){
+        level++;
+        xp = 0;
+        System.out.printf("%s levelled up! their level is now: %d",username,level);
+    }
 }

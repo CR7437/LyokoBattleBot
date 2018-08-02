@@ -1,4 +1,4 @@
-package Logic;
+package Logic.Enums;
 
 /**
  * Created by jack on 8/3/18.

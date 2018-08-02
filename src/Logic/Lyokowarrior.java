@@ -1,6 +1,10 @@
 package Logic;
 
+import Logic.Enums.ATTACKS;
 import Logic.Enums.LYOKOCLASS;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jack on 8/3/18.
@@ -94,5 +98,13 @@ public class Lyokowarrior {
         level++;
         xp = 0;
         System.out.printf("%s levelled up! their level is now: %d",username,level);
+    }
+
+    public List<ATTACKS> getAttacks(){
+        List<ATTACKS> attacks = new ArrayList<>();
+        for (int i = 1; i <= level; i++) {
+            attacks.addAll(lyokoclass.getLevelAttacks(level));
+        }
+        return attacks;
     }
 }

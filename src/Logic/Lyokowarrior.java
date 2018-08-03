@@ -88,6 +88,7 @@ public class Lyokowarrior {
     public void addXP(int ammount){
         if ((xp + ammount) >= LEVELXP){
             int remainder = (xp + ammount) - LEVELXP;
+            levelUp();
             addXP(remainder);
         }else {
             xp+=ammount;
@@ -97,14 +98,18 @@ public class Lyokowarrior {
     public void levelUp(){
         level++;
         xp = 0;
-        System.out.printf("%s levelled up! their level is now: %d",username,level);
+        System.out.printf("%s levelled up! their level is now: %d\n",username,level);
     }
 
     public List<ATTACKS> getAttacks(){
         List<ATTACKS> attacks = new ArrayList<>();
         for (int i = 1; i <= level; i++) {
-            attacks.addAll(lyokoclass.getLevelAttacks(level));
+            attacks.addAll(lyokoclass.getLevelAttacks(i));
         }
         return attacks;
+    }
+
+    public int getXp() {
+        return xp;
     }
 }

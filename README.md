@@ -1,4 +1,4 @@
-### Lyoko Battle Bot
+# Lyoko Battle Bot
 
 ## Introduction
 Lyoko battle bot is a Discord Bot written in Java that aims to provide simple RPG battle mechanics

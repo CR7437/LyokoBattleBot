@@ -1,4 +1,4 @@
-LyokoBattleBot copyright licence Version 1
+LyokoBattleBot copyright license Version 1
 3 August 2018
 
 This document serves as a reference to anyone viewing, downloading or attempting to modify the source-code of LyokoBattleBot

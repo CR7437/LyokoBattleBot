@@ -17,7 +17,7 @@ LBB; The Bot; The Software: The software in this repository, named Lyoko Battle 
 ###BEFORE DOWNLOADING###
 By downloading the source-code or a binary of it you automatically agree to these terms.
 Should you require extra permissions, contact the author: GoodOldJack12
-You MUST include this file, LICENCE.txt with every and any copy of the source code or its binaries,
+You MUST include this file, LICENCE.txt and README.MD with every and any copy of the source code or its binaries,
 Without alterations.
 
 ####CONDITIONS#### 
@@ -32,11 +32,11 @@ You are not allowed to:
 *Use its source-code as part of a different project, or under a different name
 
 You are encouraged to make pull requests to this repo with your modifications,
-and you will be listed as a contributor in the [README.MD] (README.MD)
+and you will be listed as a contributor in the README.MD
 
 By contributing to this project you do not recieve any rights.
 You can still lose the right to be in possesion of source-code or binaries.
-You will not me removed from the contributor list in  [README.MD] (README.MD)
+You will not me removed from the contributor list in README.MD
 Unless your contributions are reversed.
 
 ####TLDR####
@@ -45,6 +45,6 @@ Basically, dont run my bot. improve my code,
 bitch at me for being an idiot, you'll get credit.
 
 If the bot ever goes down, contact me.
-(links in in [README.MD] (README.MD))
+(links in in README.MD)
 
 

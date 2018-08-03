@@ -38,7 +38,6 @@ public class Main {
         for (ATTACKS attack:lyokowarrior.getAttacks()){
             System.out.println(attack.toString());
         }
-        //dummy
 
     }
 }

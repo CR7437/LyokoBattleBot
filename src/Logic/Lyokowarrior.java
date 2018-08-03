@@ -102,6 +102,7 @@ public class Lyokowarrior {
     }
 
     public List<ATTACKS> getAttacks(){
+        
         List<ATTACKS> attacks = new ArrayList<>();
         for (int i = 1; i <= level; i++) {
             attacks.addAll(lyokoclass.getLevelAttacks(i));

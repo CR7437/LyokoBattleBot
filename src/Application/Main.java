@@ -1,3 +1,5 @@
+package Application;
+
 import Domain.Enums.ATTACKS;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;

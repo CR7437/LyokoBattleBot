@@ -1,7 +1,7 @@
-package Logic;
+package Domain;
 
-import Logic.Enums.ATTACKS;
-import Logic.Enums.LYOKOCLASS;
+import Domain.Enums.ATTACKS;
+import Domain.Enums.LYOKOCLASS;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Logic;
+package Domain;
 
 /**
  * Created by jack on 10/11/18.

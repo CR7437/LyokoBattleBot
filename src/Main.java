@@ -1,6 +1,6 @@
-import Logic.Enums.ATTACKS;
-import Logic.Enums.LYOKOCLASS;
-import Logic.Lyokowarrior;
+import Domain.Enums.ATTACKS;
+import Domain.Enums.LYOKOCLASS;
+import Domain.Lyokowarrior;
 
 /**
  * Created by jack on 8/3/18.

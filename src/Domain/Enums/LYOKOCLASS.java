@@ -1,4 +1,4 @@
-package Logic.Enums;
+package Domain.Enums;
 
 import java.util.ArrayList;
 import java.util.Arrays;

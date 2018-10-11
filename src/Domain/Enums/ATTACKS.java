@@ -1,4 +1,4 @@
-package Logic.Enums;
+package Domain.Enums;
 
 /**
  * Created by jack on 8/3/18.

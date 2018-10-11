@@ -1,6 +1,6 @@
-package Logic.Database;
+package Domain.Database;
 
-import Logic.Lyokowarrior;
+import Domain.Lyokowarrior;
 
 import java.util.ArrayList;
 import java.util.List;

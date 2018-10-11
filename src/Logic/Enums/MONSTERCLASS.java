@@ -8,7 +8,7 @@ import java.util.List;
  * Created by jack on 8/3/18.
  * Adapted to XANA's Monsters by Chris on 8/3/18
  */
-public enum  MONSTERS {
+public enum MONSTERCLASS {
     Manta(Arrays.asList(MATTACKS.TACKLE, MATTACKS.TOSS, MATTACKS.mantaLASER, MATTACKS.mantaCRAZY)),
     Creeper(Arrays.asList(MATTACKS.TOSS, MATTACKS.cLASER)),
     Tarantula(Arrays.asList(MATTACKS.TACKLE, MATTACKS.TOSS, MATTACKS.tLASER, MATTACKS.tCHARGE, MATTACKS.tSLAM)),
@@ -24,7 +24,7 @@ public enum  MONSTERS {
 
     private final List<MATTACKS> mattacks;
 
-    MONSTERS(List<MATTACKS> mattacks) {
+    MONSTERCLASS(List<MATTACKS> mattacks) {
         this.mattacks = mattacks;
     }
 

@@ -1,4 +1,4 @@
-package Logic.Enums;
+package Domain.Enums;
 
 /**
  * Created by jack on 8/3/18.
@@ -12,7 +12,7 @@ public enum MATTACKS {
 	cLASER("CreeperLaser",6,40,false),
 	//Tarantula Attacks
 	tLASER("TarantulaLaser",6,30,false),
-	tCHARGE("TarantulaChargedLaser",6,60,false)
+	tCHARGE("TarantulaChargedLaser",6,60,false),
 	tSLAM("TarantulaCannonSlam",6,50,false),
 	//Megatank Attacks
     mLASER("CircularLaser",5,50,true),
@@ -34,12 +34,12 @@ public enum MATTACKS {
 	//Kongre
 	kongLASER("KongreLaser",1,20,false),
 	//Shark Attacks
-	sTORPEDO("SharkTorpedo",1,20,false);
+	sTORPEDO("SharkTorpedo",1,20,false),
 	
 	//General Attacks
 	//These attacks can be used by any monster aside from Kankrelats.
 	TACKLE("Tackle",2,25,true),
-	TOSS("RagdollToss",2,2,true),
+	TOSS("RagdollToss",2,2,true);
 
 
     private final int damage;
@@ -74,6 +74,6 @@ public enum MATTACKS {
     }
 	
 	public boolean getTMULT(){
-		return tMULT
+		return tMULT;
 	}
 }

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by jack on 8/3/18.
  */
-public class Lyokowarrior extends MortalEntity{
+public class Lyokowarrior extends MortalEntity implements LevelAble{
     private String username;
     private int level;
     private LYOKOCLASS lyokoclass;
@@ -40,7 +40,7 @@ public class Lyokowarrior extends MortalEntity{
         return username;
     }
 
-    public void addXP(int ammount){
+    public int addXP(int ammount){
         if ((xp + ammount) >= LEVELXP){
             int remainder = (xp + ammount) - LEVELXP;
             levelUp();
@@ -48,6 +48,7 @@ public class Lyokowarrior extends MortalEntity{
         }else {
             xp+=ammount;
         }
+        return xp;
     }
 
     public void levelUp(){

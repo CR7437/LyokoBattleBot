@@ -1,5 +1,7 @@
 package Discord;
 
+import Domain.Enums.LYOKOCLASS;
+import Domain.Lyokowarrior;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IGuild;
 import sx.blah.discord.handle.obj.IMessage;
@@ -16,8 +18,16 @@ public class OnCommand {
 
         if(command[0].equals("hello")) {
             channel.sendMessage("Hai!");
-        } else if(command[0].equals("health")) {
-            channel.sendMessage("kys");
+        } else if(command[0].equals("create")) {
+            if(command.length < 2) {
+                channel.sendMessage("Invalid arguments. Usage: `" + prefix + "create name`");
+            }
+            Lyokowarrior LW = new Lyokowarrior(command2[1], LYOKOCLASS.SAMURAI);
+            channel.sendMessage(LW.getUsername() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+            channel.sendMessage("Attacks: TO BE PRINT");
+            LW.addXP(1500);
+            channel.sendMessage("1500 XP added.");
+            channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
         }
     }
 }

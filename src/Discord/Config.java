@@ -6,6 +6,12 @@ import java.io.FileNotFoundException;
 
 public class Config {
     private String TOKEN;
+    private String PREFIX = ".";
+
+    public String getPREFIX() {
+        return PREFIX;
+    }
+
     public Config() {
         try{
             File tokenfile = new File("./src/Application/token.txt");

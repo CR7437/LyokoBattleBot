@@ -1,8 +1,8 @@
 package Discord;
 
+import Application.Main;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
-import static Discord.BotBuilder.prefix;
 
 public class MessageListener {
 
@@ -14,8 +14,8 @@ public class MessageListener {
 
     @EventSubscriber
     public void onMessageEvent(MessageReceivedEvent event){
-        if(event.getMessage().getContent().toLowerCase().startsWith(prefix)) {
-            useCommand.processCommand(event.getMessage(),prefix);
+        if(event.getMessage().getContent().toLowerCase().startsWith(Main.prefix)) {
+            useCommand.processCommand(event.getMessage(),Main.prefix);
         }
     }
 }

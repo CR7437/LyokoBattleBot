@@ -3,7 +3,6 @@ package Application;
 import Discord.MessageListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,9 +15,9 @@ public class Main {
             File tokenfile = new File("./src/Application/token.txt");
             System.out.println(tokenfile);
             Scanner token = new Scanner(tokenfile);
-            IDiscordClient bot = createClient(token.nextLine(), true);
-            EventDispatcher dis = bot.getDispatcher();
-            dis.registerListener(new MessageListener());
+            IDiscordClient bot = BotBuilder.getBot(token.nextLine());
+            bot.getDispatcher().registerListener(new MessageListener());
+            bot.login();
         }catch (FileNotFoundException k){
             k.printStackTrace();
             return;

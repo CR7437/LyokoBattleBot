@@ -2,6 +2,7 @@ package Application.Exceptions;
 
 import sx.blah.discord.handle.impl.obj.Role;
 import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
 
 /**
@@ -15,6 +16,9 @@ public class NoPermissionException extends CommandException {
     }
     public NoPermissionException(IChannel channel, IUser user, Role requiredRole){
         this(channel,user,requiredRole.getName());
+    }
+    public NoPermissionException(IMessage message, String roleName){
+        this(message.getChannel(),message.getAuthor(),roleName);
     }
 
     public String getRoleName() {

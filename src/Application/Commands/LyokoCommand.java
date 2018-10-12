@@ -1,8 +1,13 @@
 package Application.Commands;
 
+import Application.Exceptions.AdministrationException;
 import Application.Exceptions.CommandException;
+import Application.Exceptions.NoPermissionException;
+import sx.blah.discord.handle.impl.obj.Role;
 import sx.blah.discord.handle.impl.obj.User;
 import sx.blah.discord.handle.obj.IMessage;
+import sx.blah.discord.handle.obj.IRole;
+import sx.blah.discord.handle.obj.IUser;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -16,29 +21,43 @@ import java.util.*;
 public abstract class LyokoCommand {
     private String name;
     private List<String> aliasses;
-    private String requiredRole;
+    private String requiredRoleName;
     private String helpMessage;
 
     public LyokoCommand(String name){
         aliasses = new ArrayList<>();
         helpMessage = "N/A";
-        requiredRole = "@Everyone";
+        requiredRoleName = "@Everyone";
         this.name = name;
     }
 
     public final void run(IMessage message, String[] args){
         try {
+            checkRole(message);
             doCommand(message,args);
         }catch (CommandException e){
             e.resolve();
         }
     }
-    protected void doCommand(IMessage message, String[] args) throws CommandException{
-        message.getChannel().sendMessage("This command hasnt been set up yet!");
-    }
+    protected abstract void doCommand(IMessage message, String[] args) throws CommandException;
 
-    public String getRequiredRole() {
-        return requiredRole;
+    public String getRequiredRoleName() {
+        return requiredRoleName;
+    }
+    public IRole getRequiredRole(IMessage message) throws AdministrationException {
+        List<IRole> roles = message.getGuild().getRolesByName(requiredRoleName);
+        if (roles.size() > 1) {
+            throw new AdministrationException(message.getChannel(), "There are multiple roles named: " + requiredRoleName);
+        }
+        if (roles.isEmpty()){
+            throw new AdministrationException(message.getChannel(),"There are no roles named: "+requiredRoleName);
+        }
+        return roles.get(0);
+    }
+    public void checkRole(IMessage message) throws AdministrationException, NoPermissionException {
+        if (!message.getAuthor().hasRole(getRequiredRole(message))){
+            throw new NoPermissionException(message,requiredRoleName);
+        }
     }
 
     public List<String> getAliasses() {
@@ -50,7 +69,7 @@ public abstract class LyokoCommand {
     }
 
     protected void setRequiredRole(String requiredRole) {
-        this.requiredRole = requiredRole;
+        this.requiredRoleName = requiredRole;
     }
 
     public String getHelpMessage() {

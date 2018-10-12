@@ -5,13 +5,25 @@ import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;
 import sx.blah.discord.api.events.EventDispatcher;
 import sx.blah.discord.util.DiscordException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Main {
-    public static final IDiscordClient bot = createClient("NDk0NjIxNjcxMDYwMjc1MjAx.Do2L3w.HfLSCUrGu5eoP38FmiaafF37m5s", true);
 
     public static void main(String args[]){
-        EventDispatcher dis = bot.getDispatcher();
-        dis.registerListener(new MessageListener());
-        System.out.println("The bot is online, you did something right!");
+        try{
+            File tokenfile = new File("./src/Application/token.txt");
+            System.out.println(tokenfile);
+            Scanner token = new Scanner(tokenfile);
+            IDiscordClient bot = createClient(token.nextLine(), true);
+            EventDispatcher dis = bot.getDispatcher();
+            dis.registerListener(new MessageListener());
+        }catch (FileNotFoundException k){
+            k.printStackTrace();
+            return;
+        }
+        System.out.println("The bot is starting...");
     }
 
     public static IDiscordClient createClient(String token, boolean login)

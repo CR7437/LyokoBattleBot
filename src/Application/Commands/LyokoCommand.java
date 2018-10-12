@@ -37,7 +37,7 @@ public abstract class LyokoCommand {
         return name;
     }
 
-    public void setRequiredRole(String requiredRole) {
+    protected void setRequiredRole(String requiredRole) {
         this.requiredRole = requiredRole;
     }
 
@@ -45,10 +45,10 @@ public abstract class LyokoCommand {
         return helpMessage;
     }
 
-    public void setHelpMessage(String helpMessage) {
+    protected void setHelpMessage(String helpMessage) {
         this.helpMessage = helpMessage;
     }
-    public void addAlias(String alias){
+    protected void addAlias(String alias){
         if (!aliasses.contains(alias)){
             aliasses.add(alias);
         }

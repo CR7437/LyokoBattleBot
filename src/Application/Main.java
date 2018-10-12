@@ -1,45 +1,50 @@
 package Application;
 
-import Domain.Enums.ATTACKS;
-import Domain.Enums.LYOKOCLASS;
-import Domain.Lyokowarrior;
+import Discord.MessageListener;
+import sx.blah.discord.api.ClientBuilder;
+import sx.blah.discord.api.IDiscordClient;
+import sx.blah.discord.api.events.EventDispatcher;
+import sx.blah.discord.util.DiscordException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-/**
- * Created by jack on 8/3/18.
- */
 public class Main {
-    public static void main(String[] args) {
-        Lyokowarrior lyokowarrior = new Lyokowarrior("Jack", LYOKOCLASS.SAMURAI);
-        System.out.println("At creation:");
-        System.out.println("Level: "+lyokowarrior.getLevel());
-        System.out.println("XP: "+lyokowarrior.getXp());
-        System.out.println("Attacks: ");
-        for (ATTACKS attack:lyokowarrior.getAttacks()){
-            System.out.println(attack.toString());
+
+    public static void main(String args[]){
+        try{
+            File tokenfile = new File("./src/Application/token.txt");
+            System.out.println(tokenfile);
+            Scanner token = new Scanner(tokenfile);
+            IDiscordClient bot = createClient(token.nextLine(), true);
+            EventDispatcher dis = bot.getDispatcher();
+            dis.registerListener(new MessageListener());
+        }catch (FileNotFoundException k){
+            k.printStackTrace();
+            return;
         }
-        System.out.println("------------------------");
-        System.out.println("added 1500xp");
-        lyokowarrior.addXP(1500);
-        System.out.println("------------------------");
+        System.out.println("The bot is starting...");
+    }
 
-        System.out.println("Level: "+lyokowarrior.getLevel());
-        System.out.println("XP: "+lyokowarrior.getXp());
-        System.out.println("Attacks: ");
-        for (ATTACKS attack:lyokowarrior.getAttacks()){
-            System.out.println(attack.toString());
+    public static IDiscordClient createClient(String token, boolean login)
+    {
+        ClientBuilder clientBuilder = new ClientBuilder();
+        clientBuilder.withToken(token);
+        try
+        {
+            if (login)
+            {
+                return clientBuilder.login();
+            }
+            else
+            {
+                return clientBuilder.build();
+            }
         }
-
-        System.out.println("------------------------");
-        System.out.println("added 1500xp");
-        lyokowarrior.addXP(1500);
-        System.out.println("------------------------");
-
-        System.out.println("Level: "+lyokowarrior.getLevel());
-        System.out.println("XP: "+lyokowarrior.getXp());
-        System.out.println("Attacks: ");
-        for (ATTACKS attack:lyokowarrior.getAttacks()){
-            System.out.println(attack.toString());
+        catch (DiscordException e)
+        {
+            e.printStackTrace();
+            return null;
         }
-
     }
 }

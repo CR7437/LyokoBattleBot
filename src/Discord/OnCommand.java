@@ -13,21 +13,20 @@ public class OnCommand {
         IChannel channel = message.getChannel();
         IGuild guild = message.getGuild();
 
-        String[] command = message.getContent().toLowerCase().replaceFirst(prefix, "").split(" ");
-        String[] command2 = message.getContent().replaceFirst(prefix, "").split(" "); //no lowercase
+        String[] command = message.getContent().replaceFirst(prefix, "").split(" ");
 
-        if(command[0].equals("hello")) {
+        if(command[0].equalsIgnoreCase("hello")) {
             channel.sendMessage("Hai!");
-        } else if(command[0].equals("create")) {
+        } else if(command[0].equalsIgnoreCase("create")) {
             if(command.length < 2) {
                 channel.sendMessage("Invalid arguments. Usage: `" + prefix + "create name`");
             }
-            createCommand(channel,command2);
+            createCommand(channel,command);
         }
     }
 
-    public void createCommand(IChannel channel, String[] command2){
-        Lyokowarrior LW = new Lyokowarrior(command2[1], LYOKOCLASS.SAMURAI);
+    public void createCommand(IChannel channel, String[] command){
+        Lyokowarrior LW = new Lyokowarrior(command[1], LYOKOCLASS.SAMURAI);
         channel.sendMessage(LW.getUsername() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
         channel.sendMessage("Attacks: TO BE PRINT");
         LW.addXP(1500);

@@ -1,6 +1,7 @@
 package Application.Commands;
 
 import sx.blah.discord.handle.impl.obj.User;
+import sx.blah.discord.handle.obj.IMessage;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -21,9 +22,9 @@ public abstract class LyokoCommand {
         aliasses = new ArrayList<>();
         helpMessage = "N/A";
         requiredRole = "@Everyone";
-
         this.name = name;
     }
+
 
     public String getRequiredRole() {
         return requiredRole;

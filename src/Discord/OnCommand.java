@@ -22,12 +22,16 @@ public class OnCommand {
             if(command.length < 2) {
                 channel.sendMessage("Invalid arguments. Usage: `" + prefix + "create name`");
             }
-            Lyokowarrior LW = new Lyokowarrior(command2[1], LYOKOCLASS.SAMURAI);
-            channel.sendMessage(LW.getUsername() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
-            channel.sendMessage("Attacks: TO BE PRINT");
-            LW.addXP(1500);
-            channel.sendMessage("1500 XP added.");
-            channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+            createCommand(channel,command2);
         }
+    }
+
+    public void createCommand(IChannel channel, String[] command2){
+        Lyokowarrior LW = new Lyokowarrior(command2[1], LYOKOCLASS.SAMURAI);
+        channel.sendMessage(LW.getUsername() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+        channel.sendMessage("Attacks: TO BE PRINT");
+        LW.addXP(1500);
+        channel.sendMessage("1500 XP added.");
+        channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
     }
 }

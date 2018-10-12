@@ -5,6 +5,7 @@ import sx.blah.discord.handle.obj.IMessage;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -22,9 +23,9 @@ public class Ping extends LyokoCommand {
     @Override
     protected void doCommand(IMessage message, String[] args) throws CommandException {
         int selection = new Random().nextInt(replies.size());
-        LocalDateTime sentTime = LocalDateTime.from(message.getTimestamp());
+        LocalDateTime sentTime = LocalDateTime.ofInstant(message.getCreationDate(), ZoneId.systemDefault());
         IMessage probe = message.getChannel().sendMessage(replies.get(selection));
-        LocalDateTime repliedTime = LocalDateTime.from(probe.getTimestamp());
+        LocalDateTime repliedTime = LocalDateTime.ofInstant(probe.getTimestamp(),ZoneId.systemDefault());
         long ping = Duration.between(sentTime,repliedTime).toMillis();
         probe.edit(String.format("Pong! %s (%d ms)",message.getAuthor().mention(),ping));
     }

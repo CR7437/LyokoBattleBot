@@ -27,7 +27,7 @@ public abstract class LyokoCommand {
     public LyokoCommand(String name){
         aliasses = new ArrayList<>();
         helpMessage = "N/A";
-        requiredRoleName = "@Everyone";
+        requiredRoleName = "@everyone";
         this.name = name;
     }
 

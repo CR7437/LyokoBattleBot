@@ -1,5 +1,6 @@
 package Discord;
 
+import Application.Commands.Ping;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
 import sx.blah.discord.handle.impl.obj.User;
@@ -17,8 +18,11 @@ import java.util.Map;
 public class OnCommand {
     private static final long TIMEOUT_SECONDS = 10;
     private Map<User,LocalDate> usages;
+    CommandList commandList;
     public OnCommand(){
         usages = new HashMap<>();
+        commandList = new CommandList();
+        commandList.addCommand(new Ping());
     }
 
     public void processCommand(IMessage message, String prefix){
@@ -30,14 +34,19 @@ public class OnCommand {
         String commandName = command[0];
         String[] args = Arrays.copyOfRange(command, 1, command.length);
 
-        if(commandName.equalsIgnoreCase("hello")) {
+        if (commandList.hasCommand(commandName)){
+            commandList.getCommand(commandName).run(message,args);
+        }else {
+            channel.sendMessage("Invalid command!");
+        }
+       /* if(commandName.equalsIgnoreCase("hello")) {
             channel.sendMessage("Hai!");
         } else if(commandName.equalsIgnoreCase("create")) {
             if(command.length < 2) {
                 channel.sendMessage("Invalid arguments. Usage: `" + prefix + "create name`");
             }
             createCommand(channel,args);
-        } else {channel.sendMessage("Invalid command.");}
+        } else {channel.sendMessage("Invalid command.");}*/
     }
 
     public void createCommand(IChannel channel, String[] args){

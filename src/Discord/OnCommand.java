@@ -2,17 +2,23 @@ package Discord;
 
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
+import sx.blah.discord.handle.impl.obj.User;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IGuild;
 import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OnCommand {
-
+    private static final long TIMEOUT_SECONDS = 10;
+    private Map<User,LocalDate> usages;
     public OnCommand(){
-        
+        usages = new HashMap<>();
     }
 
     public void processCommand(IMessage message, String prefix){
@@ -41,5 +47,28 @@ public class OnCommand {
         LW.addXP(1500);
         channel.sendMessage("1500 XP added.");
         channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+    }
+
+    public boolean isTimedOut(User user){
+        if (usages.containsKey(user)){
+            LocalDate lastUsage = usages.get(user);
+            Duration period = Duration.between(lastUsage,LocalDate.now());
+            if (period.getSeconds() > TIMEOUT_SECONDS){
+                usages.remove(user);
+                return false;
+            }else {
+                return true;
+            }
+        }
+        return false;
+    }
+    public long getTimeOut(User user){
+        if(isTimedOut(user)){
+            LocalDate lastUsage = usages.get(user);
+            long secondsBetween = Duration.between(lastUsage, LocalDate.now()).getSeconds();
+            return TIMEOUT_SECONDS - secondsBetween;
+        }else {
+            return 0;
+        }
     }
 }

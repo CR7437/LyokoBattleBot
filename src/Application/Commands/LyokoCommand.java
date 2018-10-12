@@ -1,5 +1,6 @@
 package Application.Commands;
 
+import Application.Exceptions.CommandException;
 import sx.blah.discord.handle.impl.obj.User;
 import sx.blah.discord.handle.obj.IMessage;
 
@@ -25,6 +26,16 @@ public abstract class LyokoCommand {
         this.name = name;
     }
 
+    public final void run(IMessage message, String[] args){
+        try {
+            doCommand(message,args);
+        }catch (CommandException e){
+            e.resolve();
+        }
+    }
+    protected void doCommand(IMessage message, String[] args) throws CommandException{
+        message.getChannel().sendMessage("This command hasnt been set up yet!");
+    }
 
     public String getRequiredRole() {
         return requiredRole;

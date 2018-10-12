@@ -7,7 +7,7 @@ import sx.blah.discord.handle.obj.IUser;
 /**
  * Created by jack on 10/13/18.
  */
-public class CommandException implements LyokoExceptionI {
+public class CommandException extends Exception implements LyokoExceptionI {
     private final String errorMessage;
     private final IUser user;
     private final IChannel channel;

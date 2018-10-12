@@ -1,5 +1,6 @@
 package Application;
 
+import Discord.BotBuilder;
 import Discord.MessageListener;
 import sx.blah.discord.api.ClientBuilder;
 import sx.blah.discord.api.IDiscordClient;

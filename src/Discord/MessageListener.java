@@ -2,13 +2,14 @@ package Discord;
 
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
+import static Discord.BotBuilder.prefix;
 
 public class MessageListener {
 
     public MessageListener(){
 
     }
-    public String prefix = new String(".");
+
     OnCommand useCommand = new OnCommand();
 
     @EventSubscriber

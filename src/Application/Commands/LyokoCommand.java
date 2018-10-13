@@ -2,6 +2,7 @@ package Application.Commands;
 
 import Application.Exceptions.AdministrationException;
 import Application.Exceptions.CommandException;
+import Application.Exceptions.InvalidCommandException;
 import Application.Exceptions.NoPermissionException;
 import sx.blah.discord.handle.impl.obj.Role;
 import sx.blah.discord.handle.impl.obj.User;
@@ -9,6 +10,7 @@ import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IRole;
 import sx.blah.discord.handle.obj.IUser;
 
+import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -89,14 +91,24 @@ public abstract class LyokoCommand {
         }
     }
 
-    protected void checkArgs(String[] args,int min){
-
+    protected void checkArgs(IMessage message,String[] args,int min) throws InvalidCommandException {
+        checkArgs(message,args,min,Integer.MAX_VALUE);
     }
-    protected void checkArgs(String[] args, int min, int max){
-
+    protected void checkArgs(IMessage message,String[] args, int min, int max) throws InvalidCommandException {
+        if (args.length < min){
+            throw new InvalidCommandException(message,getHelpMessage());
+        }else if (args.length > max){
+            throw new InvalidCommandException(message,getHelpMessage());
+        }
     }
-    protected int checkNumber(String string){
-        return 0;
+    protected int checkNumber(IMessage message,String string) throws InvalidCommandException {
+        int number;
+        try {
+            number = Integer.parseInt(string);
+        }catch (NumberFormatException e){
+            throw new InvalidCommandException(message,getHelpMessage());
+        }
+        return number;
     }
 
 }

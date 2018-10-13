@@ -2,6 +2,7 @@ package Application.Exceptions;
 
 import Domain.Exceptions.LyokoExceptionI;
 import sx.blah.discord.handle.obj.IChannel;
+import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
 
 /**
@@ -15,6 +16,9 @@ public class CommandException extends Exception implements LyokoExceptionI {
         this.user = user;
         this.errorMessage = errorMessage;
         this.channel = channel;
+    }
+    public CommandException(IMessage message, String errorMessage){
+        this(message.getChannel(),message.getAuthor(),errorMessage);
     }
 
 

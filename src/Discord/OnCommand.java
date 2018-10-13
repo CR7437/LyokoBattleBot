@@ -3,14 +3,12 @@ package Discord;
 import Application.Commands.Ping;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
-import sx.blah.discord.handle.impl.obj.User;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IGuild;
 import sx.blah.discord.handle.obj.IMessage;
 import sx.blah.discord.handle.obj.IUser;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -49,11 +47,11 @@ public class OnCommand {
 
     public void createCommand(IChannel channel, String[] args){
         Lyokowarrior LW = new Lyokowarrior(args[0], LYOKOCLASS.SAMURAI);
-        channel.sendMessage(LW.getUsername() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+        channel.sendMessage(LW.getId() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
         channel.sendMessage("Attacks: TO BE PRINT");
         LW.addXP(1500);
         channel.sendMessage("1500 XP added.");
-        channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
+        channel.sendMessage(LW.getId() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
     }
 
     public boolean isTimedOut(IUser user){

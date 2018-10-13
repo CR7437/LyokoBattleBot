@@ -10,23 +10,23 @@ import java.util.List;
  * Created by jack on 8/3/18.
  */
 public class Lyokowarrior extends MortalEntity implements LevelAble{
-    private String username;
+    private long id;
     private int level;
     private LYOKOCLASS lyokoclass;
     private static int LEVELXP = 1000;
     private int xp;
     private static final int HEALTHCAP = 1000;
     private static final int STARTHEALTH = 50;
-    public Lyokowarrior(String username,LYOKOCLASS lyokoclass){
+    public Lyokowarrior(long id,LYOKOCLASS lyokoclass){
         super(STARTHEALTH,HEALTHCAP);
-        this.username = username;
+        this.id = id;
         this.level = 1;
         this.lyokoclass = lyokoclass;
     }
 
-    public Lyokowarrior(String username,LYOKOCLASS lyokoclass,int level, int health){
+    public Lyokowarrior(long id,LYOKOCLASS lyokoclass,int level, int health){
         super(health,health,HEALTHCAP); //TODO DEFINITELY MAKE A FORMULA FOR MAXHEALTH
-        this.username = username;
+        this.id = id;
         this.level = level;
         this.lyokoclass = lyokoclass;
     }
@@ -36,8 +36,8 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
         return level;
     }
 
-    public String getUsername() {
-        return username;
+    public long getId() {
+        return id;
     }
 
     public int addXP(int ammount){
@@ -54,7 +54,7 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
     public void levelUp(){
         level++;
         xp = 0;
-        System.out.printf("%s levelled up! their level is now: %d\n",username,level);
+        System.out.printf("%s levelled up! their level is now: %d\n", id,level);
     }
 
     public List<ATTACKS> getAttacks(){

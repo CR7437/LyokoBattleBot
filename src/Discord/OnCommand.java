@@ -37,7 +37,7 @@ public class OnCommand {
 
         if (commandList.hasCommand(commandName)){
             if (isTimedOut(sender)){
-                channel.sendMessage(String.format("Slow down, %s (%ds)",sender.getName()+sender.getDiscriminator(),getTimeOut(sender)));
+                channel.sendMessage(String.format("Slow down, %s (%ds)",sender.getName()+"#"+sender.getDiscriminator(),getTimeOut(sender)));
             }else {
                 commandList.getCommand(commandName).run(message,args);
                 usages.put(sender,LocalDateTime.now());

@@ -1,6 +1,7 @@
 package Application.Commands;
 
 import Application.Exceptions.CommandException;
+import Application.Main;
 import sx.blah.discord.handle.obj.IMessage;
 
 import java.time.Duration;
@@ -18,10 +19,12 @@ public class Ping extends LyokoCommand {
     public Ping() {
         super("Ping");
         setHelpMessage("Shows you how shit your internet really is");
+        setUsage(String.format("%sPing", Main.prefix));
     }
 
     @Override
     protected void doCommand(IMessage message, String[] args) throws CommandException {
+        checkArgs(message,args,0,0);
         int selection = new Random().nextInt(replies.size());
         LocalDateTime sentTime = LocalDateTime.ofInstant(message.getCreationDate(), ZoneId.systemDefault());
         IMessage probe = message.getChannel().sendMessage(replies.get(selection));

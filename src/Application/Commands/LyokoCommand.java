@@ -25,10 +25,12 @@ public abstract class LyokoCommand {
     private List<String> aliasses;
     private String requiredRoleName;
     private String helpMessage;
+    private String usage;
 
     public LyokoCommand(String name){
         aliasses = new ArrayList<>();
         helpMessage = "N/A";
+        usage = "N/A";
         requiredRoleName = "@everyone";
         this.name = name;
     }
@@ -69,8 +71,13 @@ public abstract class LyokoCommand {
             aliasses.add(alias);
         }
     }
+    protected void setUsage(String usage){
+        this.usage = usage;
+    }
 
-
+    public String getUsage() {
+        return usage;
+    }
 
     private String getRequiredRoleName() {
         return requiredRoleName;
@@ -96,9 +103,9 @@ public abstract class LyokoCommand {
     }
     protected void checkArgs(IMessage message,String[] args, int min, int max) throws InvalidCommandException {
         if (args.length < min){
-            throw new InvalidCommandException(message,getHelpMessage());
+            throw new InvalidCommandException(message,getUsage());
         }else if (args.length > max){
-            throw new InvalidCommandException(message,getHelpMessage());
+            throw new InvalidCommandException(message,getUsage());
         }
     }
     protected int checkNumber(IMessage message,String string) throws InvalidCommandException {
@@ -106,7 +113,7 @@ public abstract class LyokoCommand {
         try {
             number = Integer.parseInt(string);
         }catch (NumberFormatException e){
-            throw new InvalidCommandException(message,getHelpMessage());
+            throw new InvalidCommandException(message,getUsage());
         }
         return number;
     }

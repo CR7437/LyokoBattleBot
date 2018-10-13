@@ -17,9 +17,9 @@ import java.util.Random;
 public class Ping extends LyokoCommand {
     private List<String> replies = Arrays.asList("Aelita, you've activated my tower!","I don't want to talk about it.","Elisabeth, I am very dissapointed in you!");
     public Ping() {
-        super("Ping");
+        super("ping");
         setHelpMessage("Shows you how shit your internet really is");
-        setUsage(String.format("%sPing", Main.prefix));
+        setUsage(String.format("%sping", Main.prefix));
     }
 
     @Override

@@ -10,10 +10,10 @@ import sx.blah.discord.handle.obj.IUser;
 public class InvalidCommandException extends CommandException {
 
     public InvalidCommandException(IChannel channel, IUser user, String errorMessage) {
-        super(channel, user, String.format("**Invalid syntax!**\n__Use: %s__",errorMessage));
+        super(channel, user, String.format("**Invalid syntax!**\nUse: %s",errorMessage));
     }
 
     public InvalidCommandException(IMessage message, String errorMessage) {
-        super(message, String.format("**Invalid syntax!**\n__Use: %s__",errorMessage));
+        super(message, String.format("**Invalid syntax!**\nUse: %s",errorMessage));
     }
 }

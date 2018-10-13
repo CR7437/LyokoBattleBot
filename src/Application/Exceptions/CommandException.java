@@ -24,7 +24,7 @@ public class CommandException extends Exception implements LyokoExceptionI {
 
     @Override
     public String getErrorMessage() {
-        return String.format("%s : %s",user.getName(),errorMessage);
+        return String.format("%s: %s",user.getName(),errorMessage);
     }
 
     @Override

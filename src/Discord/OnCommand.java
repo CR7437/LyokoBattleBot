@@ -45,14 +45,6 @@ public class OnCommand {
         }else {
             channel.sendMessage("Invalid command!");
         }
-       /* if(commandName.equalsIgnoreCase("hello")) {
-            channel.sendMessage("Hai!");
-        } else if(commandName.equalsIgnoreCase("create")) {
-            if(command.length < 2) {
-                channel.sendMessage("Invalid arguments. Usage: `" + prefix + "create name`");
-            }
-            createCommand(channel,args);
-        } else {channel.sendMessage("Invalid command.");}*/
     }
 
     public void createCommand(IChannel channel, String[] args){

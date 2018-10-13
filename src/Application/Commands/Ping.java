@@ -15,7 +15,7 @@ import java.util.Random;
  * Created by jack on 10/13/18.
  */
 public class Ping extends LyokoCommand {
-    private List<String> replies = Arrays.asList("Aelita, you've activated my tower!","I dont want to talk about it","Elisabeth, I am very dissapointed in you!");
+    private List<String> replies = Arrays.asList("Aelita, you've activated my tower!","I don't want to talk about it.","Elisabeth, I am very dissapointed in you!");
     public Ping() {
         super("Ping");
         setHelpMessage("Shows you how shit your internet really is");

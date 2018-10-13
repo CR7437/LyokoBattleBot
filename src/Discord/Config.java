@@ -14,7 +14,7 @@ public class Config {
 
     public Config() {
         try{
-            File tokenfile = new File("./src/Application/token.txt");
+            File tokenfile = new File("token.txt");
             System.out.println(tokenfile);
             TOKEN = new Scanner(tokenfile).nextLine();
         }catch (FileNotFoundException k){

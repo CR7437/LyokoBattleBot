@@ -41,24 +41,7 @@ public abstract class LyokoCommand {
     }
     protected abstract void doCommand(IMessage message, String[] args) throws CommandException;
 
-    public String getRequiredRoleName() {
-        return requiredRoleName;
-    }
-    public IRole getRequiredRole(IMessage message) throws AdministrationException {
-        List<IRole> roles = message.getGuild().getRolesByName(requiredRoleName);
-        if (roles.size() > 1) {
-            throw new AdministrationException(message.getChannel(), "There are multiple roles named: " + requiredRoleName);
-        }
-        if (roles.isEmpty()){
-            throw new AdministrationException(message.getChannel(),"There are no roles named: "+requiredRoleName);
-        }
-        return roles.get(0);
-    }
-    public void checkRole(IMessage message) throws AdministrationException, NoPermissionException {
-        if (!message.getAuthor().hasRole(getRequiredRole(message))){
-            throw new NoPermissionException(message,requiredRoleName);
-        }
-    }
+
 
     public List<String> getAliasses() {
         return aliasses;
@@ -83,6 +66,37 @@ public abstract class LyokoCommand {
         if (!aliasses.contains(alias)){
             aliasses.add(alias);
         }
+    }
+
+
+
+    private String getRequiredRoleName() {
+        return requiredRoleName;
+    }
+    private IRole getRequiredRole(IMessage message) throws AdministrationException {
+        List<IRole> roles = message.getGuild().getRolesByName(requiredRoleName);
+        if (roles.size() > 1) {
+            throw new AdministrationException(message.getChannel(), "There are multiple roles named: " + requiredRoleName);
+        }
+        if (roles.isEmpty()){
+            throw new AdministrationException(message.getChannel(),"There are no roles named: "+requiredRoleName);
+        }
+        return roles.get(0);
+    }
+    protected void checkRole(IMessage message) throws AdministrationException, NoPermissionException {
+        if (!message.getAuthor().hasRole(getRequiredRole(message))){
+            throw new NoPermissionException(message,requiredRoleName);
+        }
+    }
+
+    protected void checkArgs(String[] args,int min){
+
+    }
+    protected void checkArgs(String[] args, int min, int max){
+
+    }
+    protected int checkNumber(String string){
+        return 0;
     }
 
 }

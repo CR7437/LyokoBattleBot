@@ -11,13 +11,14 @@ import sx.blah.discord.handle.obj.IUser;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class OnCommand {
     private static final long TIMEOUT_SECONDS = 10;
-    private Map<User,LocalDate> usages;
+    private Map<IUser,LocalDateTime> usages;
     CommandList commandList;
     public OnCommand(){
         usages = new HashMap<>();
@@ -35,7 +36,12 @@ public class OnCommand {
         String[] args = Arrays.copyOfRange(command, 1, command.length);
 
         if (commandList.hasCommand(commandName)){
-            commandList.getCommand(commandName).run(message,args);
+            if (isTimedOut(sender)){
+                channel.sendMessage(String.format("Slow down, %s (%ds)",sender.getName()+sender.getDiscriminator(),getTimeOut(sender)));
+            }else {
+                commandList.getCommand(commandName).run(message,args);
+                usages.put(sender,LocalDateTime.now());
+            }
         }else {
             channel.sendMessage("Invalid command!");
         }
@@ -58,10 +64,10 @@ public class OnCommand {
         channel.sendMessage(LW.getUsername() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
     }
 
-    public boolean isTimedOut(User user){
+    public boolean isTimedOut(IUser user){
         if (usages.containsKey(user)){
-            LocalDate lastUsage = usages.get(user);
-            Duration period = Duration.between(lastUsage,LocalDate.now());
+            LocalDateTime lastUsage = usages.get(user);
+            Duration period = Duration.between(lastUsage,LocalDateTime.now());
             if (period.getSeconds() > TIMEOUT_SECONDS){
                 usages.remove(user);
                 return false;
@@ -71,10 +77,10 @@ public class OnCommand {
         }
         return false;
     }
-    public long getTimeOut(User user){
+    public long getTimeOut(IUser user){
         if(isTimedOut(user)){
-            LocalDate lastUsage = usages.get(user);
-            long secondsBetween = Duration.between(lastUsage, LocalDate.now()).getSeconds();
+            LocalDateTime lastUsage = usages.get(user);
+            long secondsBetween = Duration.between(lastUsage, LocalDateTime.now()).getSeconds();
             return TIMEOUT_SECONDS - secondsBetween;
         }else {
             return 0;

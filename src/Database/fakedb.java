@@ -13,9 +13,7 @@ import java.util.List;
 public class fakedb implements DatabaseInterface {
     List<Lyokowarrior> players = new ArrayList<>();
 
-    public List<Lyokowarrior> getPlayers() {
-        return players;
-    }
+    public List<Lyokowarrior> getPlayers() { return players; }
 
     @Override
     public Lyokowarrior getWarrior(long id){
@@ -49,6 +47,7 @@ public class fakedb implements DatabaseInterface {
         }
         return found;
     }
+
     /*Useless method in this case because everything lives in memory*/
     @Override
     public Lyokowarrior updateWarrior(Lyokowarrior lyokowarrior) {

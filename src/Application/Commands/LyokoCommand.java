@@ -1,5 +1,6 @@
 package Application.Commands;
 
+import Application.Checker;
 import Application.Exceptions.AdministrationException;
 import Application.Exceptions.CommandException;
 import Application.Exceptions.InvalidCommandException;
@@ -108,14 +109,10 @@ public abstract class LyokoCommand {
             throw new InvalidCommandException(message,getUsage());
         }
     }
-    protected int checkNumber(IMessage message,String string) throws InvalidCommandException {
-        int number;
-        try {
-            number = Integer.parseInt(string);
-        }catch (NumberFormatException e){
-            throw new InvalidCommandException(message,getUsage());
-        }
-        return number;
+
+    public int checkNumber(IMessage message, String string) throws InvalidCommandException {
+        try { return Checker.checkNumber(string);}
+        catch (NumberFormatException e){ throw new InvalidCommandException(message,getUsage()); }
     }
 
 }

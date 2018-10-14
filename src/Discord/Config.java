@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class Config {
     private String TOKEN;
-    private String PREFIX = ".";
+    private String PREFIX = "-";
 
     public String getPREFIX() {
         return PREFIX;

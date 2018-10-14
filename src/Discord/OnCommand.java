@@ -1,5 +1,6 @@
 package Discord;
 
+import Application.Commands.Create;
 import Application.Commands.Ping;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
@@ -22,6 +23,7 @@ public class OnCommand {
         usages = new HashMap<>();
         commandList = new CommandList();
         commandList.addCommand(new Ping());
+        commandList.addCommand(new Create());
     }
 
     public void processCommand(IMessage message, String prefix){
@@ -45,14 +47,14 @@ public class OnCommand {
         }
     }
 
-    public void createCommand(IChannel channel, String[] args){
+    /*public void createCommand(IChannel channel, String[] args){
         Lyokowarrior LW = new Lyokowarrior(args[0], LYOKOCLASS.SAMURAI);
         channel.sendMessage(LW.getId() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
         channel.sendMessage("Attacks: TO BE PRINT");
         LW.addXP(1500);
         channel.sendMessage("1500 XP added.");
         channel.sendMessage(LW.getId() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
-    }
+    }*/
 
     public boolean isTimedOut(IUser user){
         if (usages.containsKey(user)){

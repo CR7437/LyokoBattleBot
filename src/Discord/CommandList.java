@@ -9,7 +9,7 @@ import java.util.List;
  * Created by jack on 10/13/18.
  */
 public class CommandList {
-    List<LyokoCommand> commandList;
+    private List<LyokoCommand> commandList;
     public CommandList(){
         commandList = new ArrayList<>();
     }

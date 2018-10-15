@@ -2,6 +2,7 @@ package Discord;
 
 import Application.Commands.Create;
 import Application.Commands.Ping;
+import Application.Main;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
 import sx.blah.discord.handle.obj.IChannel;
@@ -19,15 +20,16 @@ public class OnCommand {
     private static final long TIMEOUT_SECONDS = 1;
     private Map<IUser,LocalDateTime> usages;
     private CommandList commandList;
-
+    private String prefix;
     public OnCommand(){
         usages = new HashMap<>();
         commandList = new CommandList();
         commandList.addCommand(new Ping());
         commandList.addCommand(new Create());
+        prefix = Main.prefix;
     }
 
-    public void processCommand(IMessage message, String prefix){
+    public void processCommand(IMessage message){
         IUser sender = message.getAuthor();
         IChannel channel = message.getChannel();
         IGuild guild = message.getGuild();

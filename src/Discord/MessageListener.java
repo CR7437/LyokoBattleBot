@@ -15,7 +15,7 @@ public class MessageListener {
     @EventSubscriber
     public void onMessageEvent(MessageReceivedEvent event){
         if(event.getMessage().getContent().toLowerCase().startsWith(Main.prefix)) {
-            useCommand.processCommand(event.getMessage(),Main.prefix);
+            useCommand.processCommand(event.getMessage());
         }
     }
 }

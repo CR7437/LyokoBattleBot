@@ -20,7 +20,7 @@ public class Create extends LyokoCommand {
         checkArgs(message,args,1,1);
         try {
             if(Main.getLwManager().hasWarrior(message.getAuthor().getLongID())) {
-                message.getChannel().sendMessage(message.getAuthor() + "**, you already have a LyokoWarrior!");
+                message.getChannel().sendMessage(message.getAuthor() + ", you already have a LyokoWarrior!");
             } else {
                 String lwclass = args[0].toUpperCase();
                 LYOKOCLASS lyokoclass = LYOKOCLASS.valueOf(lwclass); //FIXME might as well make a isCLass() static method or one that throws an exception

@@ -1,7 +1,9 @@
 package Discord;
 
 import Application.Commands.Create;
+import Application.Commands.Delete;
 import Application.Commands.Ping;
+import Application.Commands.Stats;
 import Application.Main;
 import Domain.Enums.LYOKOCLASS;
 import Domain.Lyokowarrior;
@@ -26,6 +28,8 @@ public class OnCommand {
         commandList = new CommandList();
         commandList.addCommand(new Ping());
         commandList.addCommand(new Create());
+        commandList.addCommand(new Delete());
+        commandList.addCommand(new Stats());
         prefix = Main.prefix;
     }
 

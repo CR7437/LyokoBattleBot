@@ -68,4 +68,6 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
     public int getXp() {
         return xp;
     }
+
+    public LYOKOCLASS getLyokoclass() {return lyokoclass;}
 }

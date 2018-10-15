@@ -6,48 +6,55 @@ import Domain.Lyokowarrior;
 
 public class LyokoWarriorManager implements ILyokoWarriorManager {
     private DatabaseInterface database;
-    public LyokoWarriorManager(DatabaseInterface database) {this.database = database;}
+
+    public LyokoWarriorManager(DatabaseInterface database) {
+        this.database = database;
+    }
 
     @Override
     public Lyokowarrior getLyokoWarrior(String string) {
-        try {
-            long id = Checker.checkNumber(string);
-            return database.getWarrior(id);
-        } catch (NumberFormatException e) {
-            throw e;
-        }
+        long id = Checker.checkNumber(string);
+        return getLyokoWarrior(id);
+
     }
 
     @Override
-    public Lyokowarrior getLyokoWarrior(long id) { return database.getWarrior(id);}
+    public Lyokowarrior getLyokoWarrior(long id) {
+        return database.getWarrior(id);
+    }
 
     @Override
     public Lyokowarrior deleteWarrior(String string) {
-        try {
             long id = Checker.checkNumber(string);
-            return database.deleteWarrior(id);
-        } catch (NumberFormatException e) {
-            throw e;
-        }
+            return deleteWarrior(id);
     }
 
     @Override
-    public Lyokowarrior deleteWarrior(long id) {return database.deleteWarrior(id);}
+    public Lyokowarrior deleteWarrior(long id) {
+        return database.deleteWarrior(id);
+    }
 
     @Override
     public boolean hasWarrior(String string) {
-        try {
+
             long id = Checker.checkNumber(string);
-            return database.hasWarrior(id);
-        } catch (NumberFormatException e) {
-            throw e;
-        }
+            return hasWarrior(id);
+
     }
 
     @Override
-    public boolean hasWarrior(long id) {return database.hasWarrior(id);}
+    public boolean hasWarrior(long id) {
+        return database.hasWarrior(id);
+    }
+
     @Override
-    public Lyokowarrior updateWarrior(Lyokowarrior lyokowarrior) {return database.updateWarrior(lyokowarrior);}
+    public Lyokowarrior updateWarrior(Lyokowarrior lyokowarrior) {
+        return database.updateWarrior(lyokowarrior);
+    }
+
+    
     @Override
-    public void addWarrior(Lyokowarrior lyokowarrior) {database.addWarrior(lyokowarrior);}
+    public void addWarrior(Lyokowarrior lyokowarrior) {
+        database.addWarrior(lyokowarrior);
+    }
 }

@@ -11,13 +11,12 @@ import java.util.List;
  */
 
 public class Monster extends MortalEntity{
-    private String name;
-    private int level;
+    private int level; //TODO should monsters have levels?
     private MONSTERCLASS monsterclass;
     private static final int HEALTHCAP = 1000;
     private static final int STARTHEALTH = 50;
 
-    public Monster(MONSTERCLASS monsterclass){
+    public Monster(MONSTERCLASS monsterclass){ //TODO additional constructors for monster levels?
         super(STARTHEALTH,HEALTHCAP);
         this.level = 1;
         this.monsterclass = monsterclass;
@@ -33,5 +32,8 @@ public class Monster extends MortalEntity{
             attacks.addAll(monsterclass.getLevelMAttacks(i));
         }
         return attacks;
+    }
+    public String getName(){
+        return monsterclass.getClass().getSimpleName();
     }
 }

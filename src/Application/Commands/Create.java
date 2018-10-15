@@ -23,15 +23,15 @@ public class Create extends LyokoCommand {
                 message.getChannel().sendMessage(message.getAuthor() + "**, you already have a LyokoWarrior!");
             } else {
                 String lwclass = args[0].toUpperCase();
-                LYOKOCLASS lyokoclass = LYOKOCLASS.valueOf(lwclass);
+                LYOKOCLASS lyokoclass = LYOKOCLASS.valueOf(lwclass); //FIXME might as well make a isCLass() static method or one that throws an exception
                 Lyokowarrior lw = new Lyokowarrior(message.getAuthor().getLongID(), lyokoclass);
                 Main.getLwManager().addWarrior(lw);
-                message.getChannel().sendMessage("Created **" + DiscordFormatter.getName(lw) + "'s** LyokoWarrior!");
+                message.getChannel().sendMessage("Created **" + DiscordFormatter.getName(lw) + "'s** LyokoWarrior!"); //FIXME string format thanks
             }
         }
         catch (IllegalArgumentException e) {
             message.getChannel().sendMessage(message.getAuthor() + ", " + args[0] + " isn't a valid class!\n"
-            + "__Valid Classes:__ `SAMURAI, FELINE, GEISHA, ANGEL`");
+            + "__Valid Classes:__ `SAMURAI, FELINE, GEISHA, ANGEL`"); //FIXME hardcoded values pls no also STRING FORMAT
         }
     }
 }

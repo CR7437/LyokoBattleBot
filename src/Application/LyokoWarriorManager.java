@@ -52,7 +52,7 @@ public class LyokoWarriorManager implements ILyokoWarriorManager {
         return database.updateWarrior(lyokowarrior);
     }
 
-    
+    //TODO perhaps make this method responsible for creating the lyokowarrior object
     @Override
     public void addWarrior(Lyokowarrior lyokowarrior) {
         database.addWarrior(lyokowarrior);

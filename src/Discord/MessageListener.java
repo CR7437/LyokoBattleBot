@@ -5,17 +5,15 @@ import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 
 public class MessageListener {
-
+    private OnCommand commandProcessor; //interface might be cleaner but eh
     public MessageListener(){
-
+        commandProcessor = new OnCommand();
     }
-
-    OnCommand useCommand = new OnCommand();
 
     @EventSubscriber
     public void onMessageEvent(MessageReceivedEvent event){
         if(event.getMessage().getContent().toLowerCase().startsWith(Main.prefix)) {
-            useCommand.processCommand(event.getMessage());
+            commandProcessor.processCommand(event.getMessage());
         }
     }
 }

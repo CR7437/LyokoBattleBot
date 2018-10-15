@@ -8,5 +8,5 @@ public interface ILyokoWarriorManager {
     Lyokowarrior updateWarrior(Lyokowarrior lyokowarrior);
     boolean hasWarrior(long id);
     boolean hasWarrior(String string);
-    void addWarrior(Lyokowarrior lyokowarrior);
+    void addWarrior(Lyokowarrior lyokowarrior); //TODO more paramters to create object inside the method?
 }

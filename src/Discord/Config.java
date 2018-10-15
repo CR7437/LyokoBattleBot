@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 
 public class Config {
     private String TOKEN;
-    private String PREFIX = "-";
+    private String PREFIX = "-"; //TODO move to config file later
 
     public String getPREFIX() {
         return PREFIX;
@@ -14,7 +14,7 @@ public class Config {
 
     public Config() {
         try{
-            File tokenfile = new File("token.txt");
+            File tokenfile = new File("token.txt"); //TODO move to YAML config file
             System.out.println(tokenfile);
             TOKEN = new Scanner(tokenfile).nextLine();
         }catch (FileNotFoundException k){

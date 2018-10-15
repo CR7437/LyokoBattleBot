@@ -18,7 +18,8 @@ import java.util.Map;
 public class OnCommand {
     private static final long TIMEOUT_SECONDS = 1;
     private Map<IUser,LocalDateTime> usages;
-    CommandList commandList;
+    private CommandList commandList;
+
     public OnCommand(){
         usages = new HashMap<>();
         commandList = new CommandList();

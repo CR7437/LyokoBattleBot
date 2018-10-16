@@ -1,6 +1,8 @@
 package Application.Commands;
 
+import Application.Checker;
 import Application.Exceptions.CommandException;
+import Application.Exceptions.InvalidClassException;
 import Application.Main;
 import Discord.DiscordFormatter;
 import Domain.Enums.LYOKOCLASS;
@@ -17,21 +19,23 @@ public class Create extends LyokoCommand {
 
     @Override
     protected void doCommand(IMessage message, String[] args) throws CommandException {
-        checkArgs(message,args,1,1);
-        try {
-            if(Main.getLwManager().hasWarrior(message.getAuthor().getLongID())) {
+        checkArgs(message, args, 1, 1);
+            if (Main.getLwManager().hasWarrior(message.getAuthor().getLongID())) {
                 message.getChannel().sendMessage(message.getAuthor() + ", you already have a LyokoWarrior!");
             } else {
-                String lwclass = args[0].toUpperCase();
-                LYOKOCLASS lyokoclass = LYOKOCLASS.valueOf(lwclass); //FIXME might as well make a isCLass() static method or one that throws an exception
+                LYOKOCLASS lyokoclass = this.isClass(message, args[0]);
                 Lyokowarrior lw = new Lyokowarrior(message.getAuthor().getLongID(), lyokoclass);
                 Main.getLwManager().addWarrior(lw);
-                message.getChannel().sendMessage("Created **" + DiscordFormatter.getName(lw) + "'s** LyokoWarrior!"); //FIXME string format thanks
+                message.getChannel().sendMessage(String.format("Created **%s's** LyokoWarrior!", DiscordFormatter.getName(lw)));
+            }
+    }
+
+    public LYOKOCLASS isClass(IMessage message, String classCheck) throws CommandException {
+        for(LYOKOCLASS lyokoclass : LYOKOCLASS.values()) {
+            if(classCheck.equalsIgnoreCase(lyokoclass.toString())) {
+                return lyokoclass;
             }
         }
-        catch (IllegalArgumentException e) {
-            message.getChannel().sendMessage(message.getAuthor() + ", " + args[0] + " isn't a valid class!\n"
-            + "__Valid Classes:__ `SAMURAI, FELINE, GEISHA, ANGEL`"); //FIXME hardcoded values pls no also STRING FORMAT
-        }
+        throw new InvalidClassException(message,classCheck);
     }
 }

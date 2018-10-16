@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by jack on 8/3/18.
  */
-public enum  LYOKOCLASS {
+public enum LYOKOCLASS {
     SAMURAI(Arrays.asList(ATTACKS.IMPACT,ATTACKS.KATANASTRIKE)),
     FELINE(Arrays.asList(ATTACKS.LASERARROW)),
     GEISHA(Arrays.asList(ATTACKS.FANSTRIKE)),
@@ -33,8 +33,16 @@ public enum  LYOKOCLASS {
         return attacks;
     }
 
-
-
-
-
+    public static String getStringClasses() {
+        StringBuilder builder = new StringBuilder();
+        for(LYOKOCLASS lyokoclass : values()) {
+            if(builder.toString().isEmpty()) {
+                builder.append(lyokoclass.toString());
+            } else {
+                String add = ", " + lyokoclass.toString();
+                builder.append(add);
+            }
+        }
+        return builder.toString();
+    }
 }

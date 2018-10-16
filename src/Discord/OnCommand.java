@@ -54,15 +54,6 @@ public class OnCommand {
         }
     }
 
-    /*public void createCommand(IChannel channel, String[] args){
-        Lyokowarrior LW = new Lyokowarrior(args[0], LYOKOCLASS.SAMURAI);
-        channel.sendMessage(LW.getId() + " has been created.\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
-        channel.sendMessage("Attacks: TO BE PRINT");
-        LW.addXP(1500);
-        channel.sendMessage("1500 XP added.");
-        channel.sendMessage(LW.getId() + "\nLevel: " + LW.getLevel() + " (" + LW.getXp() + " XP)");
-    }*/
-
     public boolean isTimedOut(IUser user){
         if (usages.containsKey(user)){
             LocalDateTime lastUsage = usages.get(user);

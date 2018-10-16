@@ -13,8 +13,11 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
     private long id;
     private int level;
     private LYOKOCLASS lyokoclass;
-    private static int LEVELXP = 1000;
+    private static int LEVELXP = setLEVELXP();
     private int xp;
+    private int health;
+    //player's max health increases by 25 points with each level.
+    private static int maxHealth = 25*getLevel()+STARTHEALTH;
     private static final int HEALTHCAP = 1000;
     private static final int STARTHEALTH = 50;
     public Lyokowarrior(long id,LYOKOCLASS lyokoclass){
@@ -22,6 +25,7 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
         this.id = id;
         this.level = 1;
         this.lyokoclass = lyokoclass;
+        this.health = health;
     }
 
     public Lyokowarrior(long id,LYOKOCLASS lyokoclass,int level, int health){
@@ -29,6 +33,7 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
         this.id = id;
         this.level = level;
         this.lyokoclass = lyokoclass;
+        this.health = health;
     }
 
 
@@ -38,6 +43,15 @@ public class Lyokowarrior extends MortalEntity implements LevelAble{
 
     public long getId() {
         return id;
+    }
+    
+    public int getHealth() {
+        return health;
+    }
+    
+    public static int getLEVELXP(int level, int maxHealth) {
+        LEVELXP = level*maxHealth+25;
+        return LEVELXP;
     }
 
     public int addXP(int ammount){

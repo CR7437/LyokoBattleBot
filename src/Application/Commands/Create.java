@@ -20,13 +20,13 @@ public class Create extends LyokoCommand {
     @Override
     protected void doCommand(IMessage message, String[] args) throws CommandException {
         checkArgs(message, args, 1, 1);
-            if (Main.getLwManager().hasWarrior(message.getAuthor().getLongID())) {
+        long id = message.getAuthor().getLongID();
+            if (Main.getLwManager().hasWarrior(id)) {
                 message.getChannel().sendMessage(message.getAuthor() + ", you already have a LyokoWarrior!");
             } else {
                 LYOKOCLASS lyokoclass = this.isClass(message, args[0]);
-                Lyokowarrior lw = new Lyokowarrior(message.getAuthor().getLongID(), lyokoclass);
-                Main.getLwManager().addWarrior(lw);
-                message.getChannel().sendMessage(String.format("Created **%s's** LyokoWarrior!", DiscordFormatter.getName(lw)));
+                Main.getLwManager().addWarrior(id,lyokoclass);
+                message.getChannel().sendMessage(String.format("Created **%s's** LyokoWarrior!", DiscordFormatter.getName(Main.getLwManager().getLyokoWarrior(id))));
             }
     }
 

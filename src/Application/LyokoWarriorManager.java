@@ -1,6 +1,7 @@
 package Application;
 
 import Domain.DatabaseInterface;
+import Domain.Enums.LYOKOCLASS;
 import Domain.ILyokoWarriorManager;
 import Domain.Lyokowarrior;
 
@@ -36,10 +37,8 @@ public class LyokoWarriorManager implements ILyokoWarriorManager {
 
     @Override
     public boolean hasWarrior(String string) {
-
             long id = Checker.checkNumber(string);
             return hasWarrior(id);
-
     }
 
     @Override
@@ -52,9 +51,10 @@ public class LyokoWarriorManager implements ILyokoWarriorManager {
         return database.updateWarrior(lyokowarrior);
     }
 
-    //TODO perhaps make this method responsible for creating the lyokowarrior object
     @Override
-    public void addWarrior(Lyokowarrior lyokowarrior) {
-        database.addWarrior(lyokowarrior);
-    }
+    public void addWarrior(long id, LYOKOCLASS lyokoclass) { database.addWarrior(new Lyokowarrior(id,lyokoclass)); }
+
+    @Override
+    public void addWarrior(Lyokowarrior lyokowarrior) {database.addWarrior(lyokowarrior);}
+
 }
